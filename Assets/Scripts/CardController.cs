@@ -30,6 +30,7 @@ public class CardController : MonoBehaviour
         if (!_isCollider && !_isDragging)// 入力エリアと衝突していない　かつ　ドラッグしていないとき、カードを初期位置に戻す
         {
             transform.position = new Vector3(_transformX, _transformY, _transformZ);
+            transform.parent = null;
         }
     }
 
@@ -48,9 +49,10 @@ public class CardController : MonoBehaviour
     {
         //Debug.Log($"OnTriggerStay2D : {collision.tag}:{collision.name}");
 
-        if (!_isDragging)// ドラッグが終わったときに入力欄と衝突していたら位置を同期する
+        if (!_isDragging && collision.tag == "CardPutArea")// ドラッグが終わったときに入力欄と衝突していたら位置を同期する
         {
             transform.position = collision.transform.position;
+            transform.parent = collision.transform;
         }
 
         _isCollider = true;

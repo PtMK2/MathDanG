@@ -55,12 +55,18 @@ public class CardController : MonoBehaviour
             transform.parent = collision.transform;
         }
 
+        if (collision.name == "CardArea")
+        {
+            transform.parent = collision.transform;
+        }
+
         _isCollider = true;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         _isCollider = false;
+        transform.parent = null;
     }
 
 }

@@ -481,7 +481,7 @@ GameObject:
   - component: {fileID: 522483911}
   - component: {fileID: 522483910}
   - component: {fileID: 522483912}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: CardArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -804,6 +804,37 @@ MonoBehaviour:
   _enemyData: {fileID: 11400000, guid: 255f61c1fd64077438ef23c3df9044e8, type: 2}
   enemyName: suraimu
   enemyDescription: futu no suraimu.
+--- !u!1 &746430331
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 746430332}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &746430332
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 746430331}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.8851639, y: 0.7123514, z: -0.04908208}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &952593299
 GameObject:
   m_ObjectHideFlags: 0
@@ -1466,7 +1497,7 @@ GameObject:
   - component: {fileID: 1443202764}
   - component: {fileID: 1443202763}
   - component: {fileID: 1443202767}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: NumCard
   m_TagString: NumCrad
   m_Icon: {fileID: 0}
@@ -2068,7 +2099,7 @@ GameObject:
   - component: {fileID: 2010834333}
   - component: {fileID: 2010834332}
   - component: {fileID: 2010834331}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: CardPutArea (1)
   m_TagString: CardPutArea
   m_Icon: {fileID: 0}
@@ -2198,7 +2229,7 @@ GameObject:
   - component: {fileID: 2060742692}
   - component: {fileID: 2060742691}
   - component: {fileID: 2060742690}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: CardPutArea
   m_TagString: CardPutArea
   m_Icon: {fileID: 0}
@@ -2322,6 +2353,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1627117887}
+  - {fileID: 746430332}
   - {fileID: 1689386376}
   - {fileID: 528546558}
   - {fileID: 1443202766}

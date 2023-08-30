@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
@@ -9,18 +10,33 @@ public class UIController : MonoBehaviour
     private TMPro.TMP_Text stageText;
     [SerializeField]
     private GameObject enemyInfoPanel;
+    [SerializeField]
+    private Slider enemyHpBar;
 
     public int stageNum = 0;// ステージ数
 
     private GameObject EnemyGameObj;
+    private GameObject[] allEnemyGOs;
 
     private string enemyName = "hogehoge";// この変数は消そうと思えば消せる
     private string enemyDescription = "hogehoge piyopiyo";// この変数は消そうと思えば消せる
+
+    private int enemySumHp = 0;
 
     // Start is called before the first frame update
     void Start()
     {
         stageText.SetText(stageText.text);
+
+        allEnemyGOs = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject go in allEnemyGOs)
+        {
+            //Debug.Log(go.GetComponent<EnemyController>().enemyHp);
+            enemySumHp += go.GetComponent<EnemyController>().enemyHp;
+        }
+        
+        enemyHpBar.maxValue = enemySumHp;
+        enemyHpBar.value = enemyHpBar.maxValue;
     }
 
     // Update is called once per frame

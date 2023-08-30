@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -34,7 +32,7 @@ public class UIController : MonoBehaviour
             //Debug.Log(go.GetComponent<EnemyController>().enemyHp);
             enemySumHp += go.GetComponent<EnemyController>().enemyHp;
         }
-        
+
         enemyHpBar.maxValue = enemySumHp;
         enemyHpBar.value = enemyHpBar.maxValue;
     }

@@ -66,7 +66,7 @@ public class CardController : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         _isCollider = false;
-        transform.parent = null;
+        transform.parent.SetParent(null);
     }
 
 }

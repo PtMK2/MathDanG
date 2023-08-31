@@ -154,7 +154,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 32
   m_Interpolate: 0
   m_SleepingMode: 0
   m_CollisionDetection: 0
@@ -173,3 +173,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cardData: {fileID: 11400000, guid: 7c73dcecb9b5c9f45a4a4a404cce70ac, type: 2}
   cardName: 
+  _isTrigger: 0
+  _isDragging: 0
+  tmpPos: {x: 0, y: 0}

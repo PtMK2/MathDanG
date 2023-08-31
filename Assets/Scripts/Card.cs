@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Card : MonoBehaviour
 {
@@ -11,6 +12,11 @@ public class Card : MonoBehaviour
 
     public string cardName;
 
+    public bool _isTrigger = false;// カード入力エリアと接触しているか
+    public bool _isDragging = false;// カードをドラッグしているか
+
+    public Vector2 tmpPos;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,26 +24,38 @@ public class Card : MonoBehaviour
 
         _Camera = Camera.main;
 
+        tmpPos = new Vector2(transform.position.x, transform.position.y);
+
         //Debug.Log($"start");
     }
 
     // Update is called once per frame
-    //void Update()
-    //{
-
-    //}
+    void Update()
+    {
+        if (!_isTrigger && !_isDragging)
+        {
+            transform.position = tmpPos;
+        }
+    }
 
     void OnMouseDrag()
     {
+        _isDragging = true;
 
         //オブジェクトの座標を変更する
-        transform.position = (Vector2)_Camera.ScreenToWorldPoint(Input.mousePosition); ;
+        transform.position = (Vector2)_Camera.ScreenToWorldPoint(Input.mousePosition);
+    }
+
+    void OnMouseUp()
+    {
+        _isDragging = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //Debug.Log($"OnTriggerStay2D : {collision.tag}:{collision.name}");
 
+        _isTrigger = true;
 
         switch (collision.name)
         {
@@ -53,8 +71,23 @@ public class Card : MonoBehaviour
 
     }
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.name == "CardArea" && !_isDragging)
+        {
+            tmpPos = (Vector2)_Camera.ScreenToWorldPoint(Input.mousePosition);
+        }
+
+        if (collision.name == "CardPutArea" && !_isDragging)
+        {
+            transform.position = new Vector2(transform.position.x, collision.transform.position.y);
+        }
+    }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
-        transform.SetParent(null);
+        _isTrigger = false;
+
+        //transform.SetParent(null);
     }
 }

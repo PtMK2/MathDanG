@@ -550,7 +550,7 @@ GameObject:
   - component: {fileID: 522483911}
   - component: {fileID: 522483910}
   - component: {fileID: 522483912}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: CardArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1589,6 +1589,7 @@ GameObject:
   - component: {fileID: 1627117886}
   - component: {fileID: 1627117885}
   - component: {fileID: 1627117888}
+  - component: {fileID: 1627117889}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1686,6 +1687,22 @@ MonoBehaviour:
   enemyInfoPanel: {fileID: 155555289}
   enemyHpBar: {fileID: 1102765103}
   stageNum: 0
+--- !u!114 &1627117889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1627117884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56666c5a40171f54783dd416a44f42bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EventMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_MaxRayIntersections: 0
 --- !u!1 &1689386372
 GameObject:
   m_ObjectHideFlags: 0
@@ -1988,7 +2005,7 @@ GameObject:
   - component: {fileID: 2060742691}
   - component: {fileID: 2060742690}
   - component: {fileID: 2060742693}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: CardPutArea
   m_TagString: CardPutArea
   m_Icon: {fileID: 0}

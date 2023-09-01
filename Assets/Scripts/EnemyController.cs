@@ -14,8 +14,7 @@ public class EnemyController : MonoBehaviour
 
     private Animator animator;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         enemyName = _enemyData.enrmyName;
         enemyDescription = _enemyData.enemyDescription;

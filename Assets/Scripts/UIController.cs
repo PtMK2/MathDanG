@@ -27,14 +27,17 @@ public class UIController : MonoBehaviour
         stageText.SetText(stageText.text);
 
         allEnemyGOs = GameObject.FindGameObjectsWithTag("Enemy");
+        Debug.Log(allEnemyGOs.Length);
         foreach (GameObject go in allEnemyGOs)
         {
-            //Debug.Log(go.GetComponent<EnemyController>().enemyHp);
+            Debug.Log(go.GetComponent<EnemyController>().enemyHp);
             enemySumHp += go.GetComponent<EnemyController>().enemyHp;
         }
 
         enemyHpBar.maxValue = enemySumHp;
         enemyHpBar.value = enemyHpBar.maxValue;
+
+        Debug.Log(enemySumHp);
     }
 
     // Update is called once per frame

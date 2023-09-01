@@ -27,10 +27,10 @@ public class UIController : MonoBehaviour
         stageText.SetText(stageText.text);
 
         allEnemyGOs = GameObject.FindGameObjectsWithTag("Enemy");
-        Debug.Log(allEnemyGOs.Length);
+        //Debug.Log(allEnemyGOs.Length);
         foreach (GameObject go in allEnemyGOs)
         {
-            Debug.Log(go.GetComponent<EnemyController>().enemyHp);
+            //Debug.Log(go.GetComponent<EnemyController>().enemyHp);
             enemySumHp += go.GetComponent<EnemyController>().enemyHp;
         }
 

@@ -1,25 +1,43 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AttackButton : MonoBehaviour
 {
 
     [SerializeField]
     private GameObject _card;
+
+    [SerializeField]
+    private Slider enemyHpBar;
+
+    [SerializeField]
+    private Transform enemys;
+
+    private Animator[] animator;
+
+    private List<Transform> targets = new List<Transform>();
+
     // Start is called before the first frame update
     void Start()
     {
         
+        foreach (Transform child in enemys)
+        {
+            
+            targets.Add(child);
+        }
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    //void update()
+    //{
         
-    }
+    //}
 
     public void OnClick()
     {
@@ -51,10 +69,20 @@ public class AttackButton : MonoBehaviour
         }
 
         Debug.Log(tmpFormula + " = " + result);
+
+        Attack((int)result);
     }
 
 
-
+    private void Attack(int point)
+    {
+        //Debug.Log("Attack");
+        enemyHpBar.value -= point;
+        foreach (Transform transform in targets)
+        {
+            transform.GetComponent<Animator>().SetTrigger("Damaged");
+        }
+    }
 
 
     // ----------------------------------------

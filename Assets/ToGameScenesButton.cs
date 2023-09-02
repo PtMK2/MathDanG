@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-public class ToRankingSceneButton : MonoBehaviour
+public class ToGameSceneButton : MonoBehaviour
 {
     public void OnClickToGameSceneButton()
     {
-        SceneManager.LoadScene("Ranking");
+        SceneManager.LoadScene("GameScene");
     }
 }
+

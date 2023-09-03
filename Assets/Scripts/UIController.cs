@@ -5,13 +5,10 @@ using UnityEngine.UI;
 public class UIController : MonoBehaviour
 {
     [SerializeField]
-    private TMPro.TMP_Text stageText;
-    [SerializeField]
     private GameObject enemyInfoPanel;
+
     [SerializeField]
     private Slider enemyHpBar;
-
-    public int stageNum = 0;// ステージ数
 
     private GameObject EnemyGameObj;
     private GameObject[] allEnemyGOs;
@@ -24,7 +21,6 @@ public class UIController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        stageText.SetText(stageText.text);
 
         allEnemyGOs = GameObject.FindGameObjectsWithTag("Enemy");
         //Debug.Log(allEnemyGOs.Length);
@@ -43,7 +39,6 @@ public class UIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        stageText.SetText("STAGE:{0}", stageNum);
 
         if (Input.GetMouseButtonDown(0))
         {

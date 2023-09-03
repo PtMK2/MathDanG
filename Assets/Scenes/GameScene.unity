@@ -1013,6 +1013,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyHpBar: {fileID: 1102765103}
   enemys: {fileID: 496398902}
+  stageText: {fileID: 1844310580}
 --- !u!1001 &795366578
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2094,10 +2095,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2620b68b9c87a748a3ee01c71ac8f5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stageText: {fileID: 1844310580}
   enemyInfoPanel: {fileID: 155555289}
   enemyHpBar: {fileID: 1102765103}
-  stageNum: 0
 --- !u!114 &1627117889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2323,7 +2322,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'STAGE:'
+  m_text: STAGE:1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

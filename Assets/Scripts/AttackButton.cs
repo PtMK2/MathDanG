@@ -13,24 +13,14 @@ public class AttackButton : MonoBehaviour
     private GameObject _card;
 
     [SerializeField]
-    private Slider enemyHpBar;
+    private GameManager _gameManager;
 
-    [SerializeField]
-    private Transform enemys;
-
-    private Animator[] animator;
-
-    private List<Transform> targets = new List<Transform>();
+    
 
     // Start is called before the first frame update
     void Start()
     {
         
-        foreach (Transform child in enemys)
-        {
-            
-            targets.Add(child);
-        }
     }
 
     // Update is called once per frame
@@ -70,18 +60,7 @@ public class AttackButton : MonoBehaviour
 
         Debug.Log(tmpFormula + " = " + result);
 
-        Attack((int)result);
-    }
-
-
-    private void Attack(int point)
-    {
-        //Debug.Log("Attack");
-        enemyHpBar.value -= point;
-        foreach (Transform transform in targets)
-        {
-            transform.GetComponent<Animator>().SetTrigger("Damaged");
-        }
+        _gameManager.GetComponent<GameManager>().AttackToEnemy((int)result);
     }
 
 

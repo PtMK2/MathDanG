@@ -444,8 +444,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _card: {fileID: 2060742689}
-  enemyHpBar: {fileID: 1102765103}
-  enemys: {fileID: 496398902}
+  _gameManager: {fileID: 746430333}
 --- !u!114 &449824469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1012,6 +1011,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41d9ba16ec0fc664899fdeadb928cf25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyHpBar: {fileID: 1102765103}
+  enemys: {fileID: 496398902}
 --- !u!1001 &795366578
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1095,7 +1096,7 @@ RectTransform:
   m_GameObject: {fileID: 952593299}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 7, y: 1, z: 1}
+  m_LocalScale: {x: 6, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1382943673}
@@ -1189,7 +1190,7 @@ RectTransform:
   m_GameObject: {fileID: 1102765101}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 7, y: 1, z: 1}
+  m_LocalScale: {x: 6, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1109572618}
@@ -2162,11 +2163,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96

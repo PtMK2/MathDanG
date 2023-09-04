@@ -24,38 +24,32 @@ public class GameManager : MonoBehaviour
 
     private int enemySumHp = 0;
 
+    public bool isEnemyDead = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        //stageText.SetText(stageText.text);
 
-        //foreach (Transform child in enemys)
-        //{
-        //    targets.Add(child);
-        //}
-
-        //allEnemyGOs = GameObject.FindGameObjectsWithTag("Enemy");
-        ////Debug.Log(allEnemyGOs.Length);
-        //foreach (GameObject go in allEnemyGOs)
-        //{
-        //    //Debug.Log(go.GetComponent<EnemyController>().enemyHp);
-        //    enemySumHp += go.GetComponent<EnemyController>().enemyHp;
-        //}
-
-        //enemyHpBar.maxValue = enemySumHp;
-        //enemyHpBar.value = enemyHpBar.maxValue;
         ResetStage();
 
-        //Debug.Log(enemySumHp);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (enemyHpBar.value <= 0)
+        if (enemyHpBar.value <= 0 && !isEnemyDead)
         {
-            //child.GetComponent<Animator>().SetTrigger("Dead");
-            EnemyDead();//仮
+            foreach (Transform transform in targets)
+            {
+                transform.GetComponent<Animator>().SetTrigger("Dead");
+            }
+
+            isEnemyDead = true;
+        }
+
+        if (isEnemyDead && enemys.childCount == 0)
+        {
+            EnemyDead();
         }
     }
 
@@ -81,10 +75,6 @@ public class GameManager : MonoBehaviour
     public void EnemyDead()
     {
 
-        foreach (Transform child in targets)
-        {
-            GameObject.DestroyImmediate(child.gameObject);//非推奨メソッド使ってるけどこれしか思いつかなかった許して
-        }
         targets.Clear();
 
         Debug.Log("dead");
@@ -109,6 +99,8 @@ public class GameManager : MonoBehaviour
     private void ResetStage()
     {
         Debug.Log("============================");
+
+        isEnemyDead = false;
 
         allEnemyGOs = GameObject.FindGameObjectsWithTag("Enemy");
         enemySumHp = 0;

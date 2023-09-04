@@ -34,4 +34,9 @@ public class EnemyController : MonoBehaviour
             animator.SetTrigger("Jump");
         }
     }
+
+    public void Dead()
+    {
+        Destroy(gameObject);
+    }
 }

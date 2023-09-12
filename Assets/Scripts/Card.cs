@@ -25,6 +25,7 @@ public class Card : MonoBehaviour
         _Camera = Camera.main;
 
         tmpPos = new Vector2(transform.position.x, transform.position.y);
+        Debug.Log($"tmpPos : {tmpPos}");
 
         //Debug.Log($"start");
     }

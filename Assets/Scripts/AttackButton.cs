@@ -61,6 +61,12 @@ public class AttackButton : MonoBehaviour
         Debug.Log(tmpFormula + " = " + result);
 
         _gameManager.GetComponent<GameManager>().AttackToEnemy((int)result);
+
+        // ÉJÅ[ÉhÇè¡Ç∑
+        foreach (Transform child in _card.transform)
+        {
+            Destroy(child.gameObject);
+        }
     }
 
 

@@ -126,6 +126,7 @@ public class GameManager : MonoBehaviour
     public void AttackToEnemy(int point)
     {
         //Debug.Log("Attack");
+        Debug.Log($"{((enemyHpBar.value == point) ? "ピッタリ！" : "")}");
         enemyHpBar.value -= point;
         foreach (Transform transform in targets)
         {

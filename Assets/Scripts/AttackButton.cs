@@ -52,9 +52,9 @@ public class AttackButton : MonoBehaviour
         {
             result = Eval(node);
         }
-        catch (System.Exception)
+        catch (System.Exception e)
         {
-            Debug.Log("計算できません");
+            Debug.Log($"計算できません 理由:{e.Message}");
             return;
         }
 
@@ -96,14 +96,18 @@ public class AttackButton : MonoBehaviour
         // 字句解析
         LexicalAnalysis(node.formula, out ns, out ope);
 
+        if (ope.Count == 0)
+        {
+            throw new System.Exception("何かしらの演算子が入力されていないため");
+        }
+
         // nsを元に数字を決定
         var numbers = new List<double>();
         {
             int child = 0;
             for (int i = 0; i < ns.Count; i++)
             {
-                double num = 0.0;
-
+                double num;
                 switch (ns[i])
                 {
                     case "#":
@@ -165,6 +169,11 @@ public class AttackButton : MonoBehaviour
                         break;
                 }
             }
+        }
+
+        if (double.IsInfinity(total))
+        {
+            throw new System.Exception("不正な計算結果");
         }
 
         return total;

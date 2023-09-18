@@ -47,7 +47,8 @@ public class CardController : MonoBehaviour
         for (int i = 0; i < cards.Count; i++)
         {
             cards[i].SetSiblingIndex(i);
-            cards[i].transform.position = new Vector3(-5f + (i * 1.5f), 0, 0);
+            //cards[i].transform.position = new Vector3(-5f + (i * 1.4f), transform.position.y, 0);
+            cards[i].transform.position = new Vector3(-5f + i, transform.position.y, 0);
         }
     }
 

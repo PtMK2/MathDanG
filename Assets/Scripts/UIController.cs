@@ -10,6 +10,9 @@ public class UIController : MonoBehaviour
     [SerializeField]
     private Slider enemyHpBar;
 
+    [SerializeField]
+    private Slider playerHpBar;
+
     private GameObject EnemyGameObj;
     
 

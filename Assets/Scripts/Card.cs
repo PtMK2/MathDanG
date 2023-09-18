@@ -25,6 +25,7 @@ public class Card : MonoBehaviour
         _Camera = Camera.main;
 
         tmpPos = new Vector2(transform.position.x, transform.position.y);
+        //Debug.Log($"tmpPos : {tmpPos}");
 
         //Debug.Log($"start");
     }
@@ -35,6 +36,7 @@ public class Card : MonoBehaviour
         if (!_isTrigger && !_isDragging)
         {
             transform.position = tmpPos;
+            transform.SetParent(GameObject.Find("CardArea " + cardName).transform);
         }
     }
 

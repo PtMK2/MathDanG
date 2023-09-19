@@ -12,6 +12,12 @@ public class GameManager : MonoBehaviour
     private Slider enemyHpBar;
 
     [SerializeField]
+    private Slider playerHpBar;
+
+    [SerializeField]
+    private GameObject player;
+
+    [SerializeField]
     private Transform enemys;
 
     [SerializeField]
@@ -26,6 +32,7 @@ public class GameManager : MonoBehaviour
     private int enemySumHp = 0;
 
     public bool isEnemyDead = false;
+    public bool isPlayerDead = false;
 
     private readonly string[] _cardNames = {
         "Card zero",
@@ -68,6 +75,12 @@ public class GameManager : MonoBehaviour
         if (isEnemyDead && enemys.childCount == 0)
         {
             EnemyDead();
+        }
+
+        if (playerHpBar.value <= 0 && !isPlayerDead)
+        {
+            player.GetComponent<Animator>().SetTrigger("Death");
+            isPlayerDead = true;
         }
     }
 

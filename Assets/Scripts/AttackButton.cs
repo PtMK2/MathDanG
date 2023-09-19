@@ -62,6 +62,8 @@ public class AttackButton : MonoBehaviour
 
         _gameManager.GetComponent<GameManager>().AttackToEnemy((int)result);
 
+        GameObject.FindWithTag("Player").GetComponent<Animator>().SetTrigger("Attack1");
+
         // ƒJ[ƒh‚ğÁ‚·
         foreach (Transform child in _card.transform)
         {

@@ -8,4 +8,8 @@ public class EnemyData : ScriptableObject
     public string enemyDescription;
 
     public int hp;
+
+    public int attack;
+
+    public int attackRate;
 }

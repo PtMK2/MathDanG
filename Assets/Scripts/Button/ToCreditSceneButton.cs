@@ -6,6 +6,7 @@ public class ToCreditSceneButton : MonoBehaviour
 {
     public void OnClickToCreditSceneButton()
     {
-        SceneManager.LoadScene("Credit");
+        Initiate.Fade("Credit", Color.black, 8f);
+        //SceneManager.LoadScene("Credit");
     }
 }

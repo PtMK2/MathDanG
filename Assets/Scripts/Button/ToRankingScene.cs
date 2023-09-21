@@ -6,6 +6,7 @@ public class ToRankingScene : MonoBehaviour
 {
     public void OnClickToGameSceneButton()
     {
-        SceneManager.LoadScene("Ranking");
+        Initiate.Fade("Ranking", Color.black, 8f);
+        //SceneManager.LoadScene("Ranking");
     }
 }

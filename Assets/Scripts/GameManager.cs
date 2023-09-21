@@ -4,12 +4,19 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using static UnityEngine.GraphicsBuffer;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField]
     private Slider enemyHpBar;
+
+    [SerializeField]
+    private Slider playerHpBar;
+
+    [SerializeField]
+    private GameObject player;
 
     [SerializeField]
     private Transform enemys;
@@ -19,13 +26,14 @@ public class GameManager : MonoBehaviour
 
     private List<Transform> targets = new List<Transform>();
 
-    private int stageNum = 1;// ƒXƒe[ƒW”
+    private int stageNum = 1;// ï¿½Xï¿½eï¿½[ï¿½Wï¿½ï¿½
 
     private GameObject[] allEnemyGOs;
 
     private int enemySumHp = 0;
 
     public bool isEnemyDead = false;
+    public bool isPlayerDead = false;
 
     private readonly string[] _cardNames = {
         "Card zero",
@@ -47,11 +55,14 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        InitializeGame();
         ResetStage();
 
     }
-
+    void InitializeGame()
+    {
+        playerHpBar.value=100;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -69,16 +80,23 @@ public class GameManager : MonoBehaviour
         {
             EnemyDead();
         }
+
+        if (playerHpBar.value <= 0 && !isPlayerDead)
+        {
+            player.GetComponent<Animator>().SetTrigger("Death");
+            isPlayerDead = true;
+            SceneManager.LoadScene("GameOver");
+        }
     }
 
     private IEnumerator CloneCard(GameObject gameObject)
     {
 
-        // ‚²‚è‰Ÿ‚µA‚¢‚Â‚©‚È‚¨‚µ‚½‚¢
+        // ï¿½ï¿½ï¿½è‰Ÿï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½Â‚ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 
-        GameObject clone = Instantiate(gameObject, new Vector2(10,10), Quaternion.identity);// ‰æ–ÊŠO‚ÉƒJ[ƒh¶¬
-        yield return null;// Ÿ‚Ìˆ—‚Å1ƒtƒŒ[ƒ€ˆÈã‘Ò‚½‚È‚¢‚ÆŒ‹‰Ê‚ªnull‚È‚Ì‚Å‘Ò‚Â
+        GameObject clone = Instantiate(gameObject, new Vector2(10,10), Quaternion.identity);// ï¿½ï¿½ÊŠOï¿½ÉƒJï¿½[ï¿½hï¿½ï¿½ï¿½ï¿½
+        yield return null;// ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½1ï¿½tï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Èï¿½Ò‚ï¿½ï¿½È‚ï¿½ï¿½ÆŒï¿½ï¿½Ê‚ï¿½nullï¿½È‚Ì‚Å‘Ò‚ï¿½
         //Debug.Log($"name={clone.GetComponent<Card>().cardName}");
         String cName = clone.GetComponent<Card>().cardName;
         Transform cTf = GameObject.Find("CardArea " + cName).transform;
@@ -91,7 +109,7 @@ public class GameManager : MonoBehaviour
     }
     private void EnemyDropCards()
     {
-        // “G‚ª—‚Æ‚·ƒJ[ƒh‚Ì–‡”
+        // ï¿½Gï¿½ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½Jï¿½[ï¿½hï¿½Ì–ï¿½ï¿½ï¿½
         int dropCardNum = UnityEngine.Random.Range(1, 4);
 
         
@@ -99,12 +117,12 @@ public class GameManager : MonoBehaviour
         Debug.Log("========================================");
 
 
-        // “G‚ª—‚Æ‚·ƒJ[ƒh‚Ìí—Ş‚ğŒˆ’è
+        // ï¿½Gï¿½ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½Jï¿½[ï¿½hï¿½Ìï¿½Ş‚ï¿½ï¿½ï¿½ï¿½ï¿½
         for (int i = 0; i < dropCardNum; i++)
         {
-            // “G‚ª—‚Æ‚·ƒJ[ƒh‚Ìí—Ş
+            // ï¿½Gï¿½ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½Jï¿½[ï¿½hï¿½Ìï¿½ï¿½
             int dropCardType = UnityEngine.Random.Range(0, _cardNames.Length);
-            Debug.Log($"¶¬‚µ‚½ƒJ[ƒh={_cardNames[dropCardType]}");
+            Debug.Log($"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Jï¿½[ï¿½h={_cardNames[dropCardType]}");
 
             GameObject gameObject = Resources.Load<GameObject>(_cardNames[dropCardType]);
             StartCoroutine(CloneCard(gameObject));
@@ -114,19 +132,19 @@ public class GameManager : MonoBehaviour
             //Instantiate(gameObject, new Vector2(0, 0), Quaternion.identity, GameObject.Find("CardArea " + gameObject.GetComponent<Card>().cardName).transform);
         }
 
-        Debug.Log($"¶¬ƒJ[ƒh‘”={dropCardNum}");
+        Debug.Log($"ï¿½ï¿½ï¿½ï¿½ï¿½Jï¿½[ï¿½hï¿½ï¿½ï¿½ï¿½={dropCardNum}");
         Debug.Log("========================================");
 
     }
 
     /// <summary>
-    /// “G‚ÖUŒ‚‚·‚éˆ—
+    /// ï¿½Gï¿½ÖUï¿½ï¿½ï¿½ï¿½ï¿½éˆï¿½ï¿½
     /// </summary>
     /// <param name="point"></param>
     public void AttackToEnemy(int point)
     {
         //Debug.Log("Attack");
-        Debug.Log($"{((enemyHpBar.value == point) ? "ƒsƒbƒ^ƒŠI" : "")}");
+        Debug.Log($"{((enemyHpBar.value == point) ? "ï¿½sï¿½bï¿½^ï¿½ï¿½ï¿½I" : "")}");
         enemyHpBar.value -= point;
         foreach (Transform transform in targets)
         {
@@ -136,7 +154,7 @@ public class GameManager : MonoBehaviour
 
 
     /// <summary>
-    /// “G‚ª€‚ñ‚¾‚Æ‚«‚Ìˆ—
+    /// ï¿½Gï¿½ï¿½ï¿½ï¿½ï¿½ñ‚¾‚Æ‚ï¿½ï¿½Ìï¿½ï¿½ï¿½
     /// </summary>
     public void EnemyDead()
     {
@@ -149,14 +167,14 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Ÿ‚ÌƒXƒe[ƒW‚Öi‚Şˆ—
+    /// ï¿½ï¿½ï¿½ÌƒXï¿½eï¿½[ï¿½Wï¿½Öiï¿½Şï¿½ï¿½ï¿½
     /// </summary>
     private void NextStage()
     {
 
         stageText.SetText("STAGE:{0}", ++stageNum);
 
-        // “G‚ğ¶¬ ‰¼
+        // ï¿½Gï¿½ğ¶ï¿½ ï¿½ï¿½
         GameObject gameObject = Resources.Load<GameObject>("Slime");
         Instantiate(gameObject, new Vector2(2,2), Quaternion.identity, enemys);
 
@@ -165,7 +183,7 @@ public class GameManager : MonoBehaviour
 
 
     /// <summary>
-    /// ƒXƒe[ƒW‰Šú‰»ˆ—
+    /// ï¿½Xï¿½eï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     /// </summary>
     private void ResetStage()
     {
@@ -188,6 +206,7 @@ public class GameManager : MonoBehaviour
         enemyHpBar.maxValue = enemySumHp;
         enemyHpBar.value = enemyHpBar.maxValue;
 
-        //Debug.Log($"ƒŠƒZƒbƒgŒãenemuSumHp={enemySumHp}");
+        //Debug.Log($"ï¿½ï¿½ï¿½Zï¿½bï¿½gï¿½ï¿½enemuSumHp={enemySumHp}");
     }
+     
 }

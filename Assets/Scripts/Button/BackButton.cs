@@ -6,6 +6,7 @@ public class BackButton : MonoBehaviour
 {
     public void OnClickToGameSceneButton()
     {
-        SceneManager.LoadScene("TopScene");
+        Initiate.Fade("TopScene", Color.black, 8f);
+        //SceneManager.LoadScene("TopScene");
     }
 }

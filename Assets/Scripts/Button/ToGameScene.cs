@@ -6,6 +6,7 @@ public class ToGameScene : MonoBehaviour
 {
     public void OnClickToGameSceneButton()
     {
-        SceneManager.LoadScene("GameScene");
+        Initiate.Fade("GameScene", Color.black, 6f);
+        //SceneManager.LoadScene("GameScene");
     }
 }

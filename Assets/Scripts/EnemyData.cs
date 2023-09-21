@@ -10,4 +10,6 @@ public class EnemyData : ScriptableObject
     public int hp;
 
     public int attack;
+
+    public int attackRate;
 }

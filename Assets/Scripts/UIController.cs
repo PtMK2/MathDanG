@@ -13,6 +13,12 @@ public class UIController : MonoBehaviour
     [SerializeField]
     private Slider playerHpBar;
 
+    [SerializeField]
+    private TMPro.TMP_Text enemyHpBarText;
+
+    [SerializeField]
+    private TMPro.TMP_Text playerHpBarText;
+
     private GameObject EnemyGameObj;
     
 
@@ -30,6 +36,8 @@ public class UIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        enemyHpBarText.text = enemyHpBar.value.ToString();
+        playerHpBarText.text = playerHpBar.value.ToString();
 
         if (Input.GetMouseButtonDown(0))
         {

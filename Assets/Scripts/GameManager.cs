@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour
         "Card multiplication",
         "Card divide"
     };
+    string[] availableObjectNames = new string[] { "Slime", "RedSlime", "GreenSlime", }; // 使用可能なオブジェクトの名前をリストに追加します
 
     // Start is called before the first frame update
     void Start()
@@ -120,7 +121,7 @@ public class GameManager : MonoBehaviour
     private void EnemyDropCards()
     {
         // �G�����Ƃ��J�[�h�̖���
-        int dropCardNum = UnityEngine.Random.Range(1, 4);
+        int dropCardNum = UnityEngine.Random.Range(7, 9);
 
         
 
@@ -189,8 +190,14 @@ public class GameManager : MonoBehaviour
         stageText.SetText("STAGE:{0}", ++stageNum);
 
         // �G�𐶐� ��
-        GameObject gameObject = Resources.Load<GameObject>("Slime");
+        int randomIndex = UnityEngine.Random.Range(0, availableObjectNames.Length);
+        for(int i=0; i<randomIndex ;i++ )
+        {
+        GameObject gameObject = Resources.Load<GameObject>(availableObjectNames[i]);
         Instantiate(gameObject, new Vector2(2,2), Quaternion.identity, enemys);
+        }
+        //GameObject gameObject = Resources.Load<GameObject>("Slime");
+        //Instantiate(gameObject, new Vector2(2,2), Quaternion.identity, enemys);
 
         ResetStage();
     }

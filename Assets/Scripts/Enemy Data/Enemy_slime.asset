@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a184acbe01a10d44882d53ddd2af8205, type: 3}
   m_Name: Enemy_slime
   m_EditorClassIdentifier: 
-  enrmyName: suraimu
-  enemyDescription: futu no suraimu
-  hp: 10
+  enrmyName: "\u30D6\u30EB\u30FC\u30B9\u30E9\u30A4\u30E0"
+  enemyDescription: "\u666E\u901A\u306E\u30B9\u30E9\u30A4\u30E0"
+  hp: 11
   attack: 5
+  attackRate: 0

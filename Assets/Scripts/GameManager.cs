@@ -84,9 +84,19 @@ public class GameManager : MonoBehaviour
         if (playerHpBar.value <= 0 && !isPlayerDead)
         {
             player.GetComponent<Animator>().SetTrigger("Death");
-            isPlayerDead = true;
-            SceneManager.LoadScene("GameOver");
+            //isPlayerDead = true;
+            //SceneManager.LoadScene("GameOver");
+            StartCoroutine(PlayetDead());
         }
+    }
+
+    private IEnumerator PlayetDead()
+    {
+        isPlayerDead = true;
+
+        yield return new WaitForSeconds(2f);
+
+        Initiate.Fade("GameOver", Color.black, 8f);
     }
 
     private IEnumerator CloneCard(GameObject gameObject)

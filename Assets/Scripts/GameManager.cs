@@ -145,6 +145,10 @@ public class GameManager : MonoBehaviour
     {
         //Debug.Log("Attack");
         Debug.Log($"{((enemyHpBar.value == point) ? "�s�b�^���I" : "")}");
+        if (enemyHpBar.value == point)
+        {
+            playerHpBar.value = playerHpBar.maxValue;
+        }
         enemyHpBar.value -= point;
         foreach (Transform transform in targets)
         {

@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
     }
     void InitializeGame()
     {
-        playerHpBar.value=100;
+        playerHpBar.value=200;
     }
     // Update is called once per frame
     void Update()

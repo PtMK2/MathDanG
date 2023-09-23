@@ -9,9 +9,11 @@ public class UIController : MonoBehaviour
 
     [SerializeField]
     private Slider enemyHpBar;
+    private Image enemyHpBarImage;
 
     [SerializeField]
     private Slider playerHpBar;
+    private Image playerHpBarImage;
 
     [SerializeField]
     private TMPro.TMP_Text enemyHpBarText;
@@ -31,6 +33,8 @@ public class UIController : MonoBehaviour
     void Start()
     {
 
+        enemyHpBarImage = enemyHpBar.fillRect.GetComponent<Image>();
+        playerHpBarImage = playerHpBar.fillRect.GetComponent<Image>();
     }
 
     // Update is called once per frame
@@ -38,6 +42,30 @@ public class UIController : MonoBehaviour
     {
         enemyHpBarText.text = enemyHpBar.value.ToString();
         playerHpBarText.text = playerHpBar.value.ToString();
+
+        if (playerHpBar.value <= playerHpBar.maxValue * 0.2)
+        {
+            playerHpBarImage.color = Color.red;
+        } else if (playerHpBar.value <= playerHpBar.maxValue * 0.4)
+        {
+            playerHpBarImage.color = Color.yellow;
+        } else
+        {
+            playerHpBarImage.color = Color.green;
+        }
+
+        if (enemyHpBar.value <= enemyHpBar.maxValue * 0.2)
+        {
+            enemyHpBarImage.color = Color.red;
+        }
+        else if (enemyHpBar.value <= enemyHpBar.maxValue * 0.4)
+        {
+            enemyHpBarImage.color = Color.yellow;
+        }
+        else
+        {
+            enemyHpBarImage.color = Color.green;
+        }
 
         if (Input.GetMouseButtonDown(0))
         {

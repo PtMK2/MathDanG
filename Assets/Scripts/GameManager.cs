@@ -192,11 +192,11 @@ public class GameManager : MonoBehaviour
         // �G�𐶐� ��
         
         int enemyNum = UnityEngine.Random.Range(1, 4);
-        for(int i = 0; i < enemyNum;i++ )
+        for(int i = 1; i <= enemyNum;i++ )
         {
             int randomIndex = UnityEngine.Random.Range(0, availableObjectNames.Length);
             GameObject gameObject = Resources.Load<GameObject>(availableObjectNames[randomIndex]);
-            Instantiate(gameObject, new Vector2(-4+i*3,2), Quaternion.identity, enemys);
+            Instantiate(gameObject, new Vector2(6-3*enemyNum+i*3.2f , 2.5f), Quaternion.identity, enemys);
         }
         //GameObject gameObject = Resources.Load<GameObject>("Slime");
         //Instantiate(gameObject, new Vector2(2,2), Quaternion.identity, enemys);

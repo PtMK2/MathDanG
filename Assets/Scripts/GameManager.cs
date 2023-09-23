@@ -194,7 +194,7 @@ public class GameManager : MonoBehaviour
         for(int i=0; i<randomIndex;i++ )
         {
         GameObject gameObject = Resources.Load<GameObject>(availableObjectNames[i]);
-        Instantiate(gameObject, new Vector2(2,2), Quaternion.identity, enemys);
+        Instantiate(gameObject, new Vector2(-4+i*3,2), Quaternion.identity, enemys);
         }
         //GameObject gameObject = Resources.Load<GameObject>("Slime");
         //Instantiate(gameObject, new Vector2(2,2), Quaternion.identity, enemys);

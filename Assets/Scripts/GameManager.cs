@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
         "Card multiplication",
         "Card divide"
     };
-    string[] availableObjectNames = new string[] { "Slime", "RedSlime", "GreenSlime", }; // 使用可能なオブジェクトの名前をリストに追加します
+    string[] availableObjectNames = new string[] { "Slime", "RedSlime", "GreenSlime", "IcekingSlime", "YellowSlime"}; // 使用可能なオブジェクトの名前をリストに追加します
 
     // Start is called before the first frame update
     void Start()

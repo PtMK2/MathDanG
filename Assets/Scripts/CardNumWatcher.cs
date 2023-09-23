@@ -18,7 +18,7 @@ public class CardNumWatcher : MonoBehaviour
     void Update()
     {
         int cardNum = cardArea.transform.childCount;
-        Debug.Log(cardNum);
+        //Debug.Log(cardNum);
 
         this.GetComponent<TMPro.TMP_Text>().text = cardNum.ToString();
     }

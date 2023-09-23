@@ -14,9 +14,14 @@ AudioSource audioSource;
 
  void Update () {
    // 左
-  if (Input.GetKey (KeyCode.LeftArrow)) {
-   //音(sound1)を鳴らす
-    audioSource.PlayOneShot(sound1);
-   }
+  //if (Input.GetKey (KeyCode.LeftArrow)) {
+  // //音(sound1)を鳴らす
+  //  audioSource.PlayOneShot(sound1);
+  // }
  }
- }
+
+    private void OnMouseUp()
+    {
+        audioSource.PlayOneShot(sound1);
+    }
+}

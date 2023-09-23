@@ -194,7 +194,7 @@ public class GameManager : MonoBehaviour
         int enemyNum = UnityEngine.Random.Range(1, 4);
         for(int i = 0; i < enemyNum;i++ )
         {
-            int randomIndex = UnityEngine.Random.Range(1, availableObjectNames.Length + 1);
+            int randomIndex = UnityEngine.Random.Range(0, availableObjectNames.Length);
             GameObject gameObject = Resources.Load<GameObject>(availableObjectNames[randomIndex]);
             Instantiate(gameObject, new Vector2(-4+i*3,2), Quaternion.identity, enemys);
         }

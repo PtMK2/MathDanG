@@ -35,7 +35,6 @@ public class AttackButton : MonoBehaviour
         string tmpFormula = "";
         double result = 0.0;
         
-        audioSource.PlayOneShot(sound1);
         foreach (Transform child in _card.transform)
         {
             tmpFormula += child.GetComponent<Card>().cardName;
@@ -65,7 +64,7 @@ public class AttackButton : MonoBehaviour
         _gameManager.GetComponent<GameManager>().AttackToEnemy((int)result);
 
         GameObject.FindWithTag("Player").GetComponent<Animator>().SetTrigger("Attack1");
-
+        audioSource.PlayOneShot(sound1);
         // �J�[�h������
         foreach (Transform child in _card.transform)
         {

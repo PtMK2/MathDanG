@@ -190,11 +190,13 @@ public class GameManager : MonoBehaviour
         stageText.SetText("STAGE:{0}", ++stageNum);
 
         // �G�𐶐� ��
-        int randomIndex = UnityEngine.Random.Range(1, availableObjectNames.Length+1);
-        for(int i=0; i<randomIndex;i++ )
+        
+        int enemyNum = UnityEngine.Random.Range(1, 4);
+        for(int i = 0; i < enemyNum;i++ )
         {
-        GameObject gameObject = Resources.Load<GameObject>(availableObjectNames[i]);
-        Instantiate(gameObject, new Vector2(-4+i*3,2), Quaternion.identity, enemys);
+            int randomIndex = UnityEngine.Random.Range(1, availableObjectNames.Length + 1);
+            GameObject gameObject = Resources.Load<GameObject>(availableObjectNames[randomIndex]);
+            Instantiate(gameObject, new Vector2(-4+i*3,2), Quaternion.identity, enemys);
         }
         //GameObject gameObject = Resources.Load<GameObject>("Slime");
         //Instantiate(gameObject, new Vector2(2,2), Quaternion.identity, enemys);

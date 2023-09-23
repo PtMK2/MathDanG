@@ -15,12 +15,13 @@ public class AttackButton : MonoBehaviour
     [SerializeField]
     private GameManager _gameManager;
 
-    
+    public AudioClip sound1;
+    AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -33,7 +34,8 @@ public class AttackButton : MonoBehaviour
     {
         string tmpFormula = "";
         double result = 0.0;
-
+        
+        audioSource.PlayOneShot(sound1);
         foreach (Transform child in _card.transform)
         {
             tmpFormula += child.GetComponent<Card>().cardName;
@@ -44,17 +46,17 @@ public class AttackButton : MonoBehaviour
         List<char> list = new(tmpFormula);
         char[] c = list.ToArray();
 
-        // \•¶‰ğÍ
+        // ï¿½\ï¿½ï¿½ï¿½ï¿½ï¿½
         Node node = Parse(c);
 
-        // ŒvZ
+        // ï¿½vï¿½Z
         try
         {
             result = Eval(node);
         }
         catch (System.Exception e)
         {
-            Debug.Log($"ŒvZ‚Å‚«‚Ü‚¹‚ñ ——R:{e.Message}");
+            Debug.Log($"ï¿½vï¿½Zï¿½Å‚ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½R:{e.Message}");
             return;
         }
 
@@ -64,7 +66,7 @@ public class AttackButton : MonoBehaviour
 
         GameObject.FindWithTag("Player").GetComponent<Animator>().SetTrigger("Attack1");
 
-        // ƒJ[ƒh‚ğÁ‚·
+        // ï¿½Jï¿½[ï¿½hï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         foreach (Transform child in _card.transform)
         {
             Destroy(child.gameObject);
@@ -75,7 +77,7 @@ public class AttackButton : MonoBehaviour
     // ----------------------------------------
 
     /// <summary>
-    /// c‚ª”‚â“à•”ˆ—‚Åg—p‚µ‚Ä‚¢‚é•¶š‚©‚Ç‚¤‚©‚Ì”»’è
+    /// cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ågï¿½pï¿½ï¿½ï¿½Ä‚ï¿½ï¿½é•¶ï¿½ï¿½ï¿½ï¿½ï¿½Ç‚ï¿½ï¿½ï¿½ï¿½Ì”ï¿½ï¿½ï¿½
     /// </summary>
     /// <param name="c"></param>
     /// <returns></returns>
@@ -86,24 +88,24 @@ public class AttackButton : MonoBehaviour
 
     
     /// <summary>
-    /// ƒm[ƒh‚²‚Æ‚Ì”®‚ğŒvZ
+    /// ï¿½mï¿½[ï¿½hï¿½ï¿½ï¿½Æ‚Ìï¿½ï¿½ï¿½ï¿½ï¿½ï¿½vï¿½Z
     /// </summary>
     /// <param name="node"></param>
     /// <returns></returns>
     private static double Eval(Node node)
     {
-        List<string> ns; // ”
-        List<char> ope; // ‰‰Zq
+        List<string> ns; // ï¿½ï¿½
+        List<char> ope; // ï¿½ï¿½ï¿½Zï¿½q
 
-        // š‹å‰ğÍ
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         LexicalAnalysis(node.formula, out ns, out ope);
 
         if (ope.Count == 0)
         {
-            throw new System.Exception("‰½‚©‚µ‚ç‚Ì‰‰Zq‚ª“ü—Í‚³‚ê‚Ä‚¢‚È‚¢‚½‚ß");
+            throw new System.Exception("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì‰ï¿½ï¿½Zï¿½qï¿½ï¿½ï¿½ï¿½ï¿½Í‚ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½ï¿½");
         }
 
-        // ns‚ğŒ³‚É”š‚ğŒˆ’è
+        // nsï¿½ï¿½ï¿½ï¿½ï¿½Éï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         var numbers = new List<double>();
         {
             int child = 0;
@@ -123,7 +125,7 @@ public class AttackButton : MonoBehaviour
             }
         }
 
-        // æZœZˆ—
+        // ï¿½ï¿½Zï¿½ï¿½ï¿½Zï¿½ï¿½ï¿½ï¿½
         {
             for (int i = 0; i < ope.Count;)
             {
@@ -156,7 +158,7 @@ public class AttackButton : MonoBehaviour
             }
         }
 
-        // ‰ÁZŒ¸Zˆ—
+        // ï¿½ï¿½ï¿½Zï¿½ï¿½ï¿½Zï¿½ï¿½ï¿½ï¿½
         double total = numbers[0];
         {
             for (int i = 0; i < ope.Count; i++)
@@ -175,7 +177,7 @@ public class AttackButton : MonoBehaviour
 
         if (double.IsInfinity(total))
         {
-            throw new System.Exception("•s³‚ÈŒvZŒ‹‰Ê");
+            throw new System.Exception("ï¿½sï¿½ï¿½ï¿½ÈŒvï¿½Zï¿½ï¿½ï¿½ï¿½");
         }
 
         return total;
@@ -183,7 +185,7 @@ public class AttackButton : MonoBehaviour
 
 
     /// <summary>
-    /// š‹å‰ğÍ
+    /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     /// </summary>
     /// <param name="str"></param>
     /// <param name="ns"></param>
@@ -224,7 +226,7 @@ public class AttackButton : MonoBehaviour
 
 
     /// <summary>
-    /// ”®‚Ì\•¶‰ğÍ
+    /// ï¿½ï¿½ï¿½ï¿½ï¿½Ì\ï¿½ï¿½ï¿½ï¿½ï¿½
     /// </summary>
     /// <param name="c"></param>
     /// <returns></returns>
@@ -241,7 +243,7 @@ public class AttackButton : MonoBehaviour
                     {
                         target.formula += "#";
 
-                        // qƒm[ƒh‚ğ’Ç‰Á
+                        // ï¿½qï¿½mï¿½[ï¿½hï¿½ï¿½Ç‰ï¿½
                         Node node = new Node();
                         target.Add(node);
                         target = node;
@@ -263,13 +265,13 @@ public class AttackButton : MonoBehaviour
 
     public class Node
     {
-        // ”®
+        // ï¿½ï¿½ï¿½ï¿½
         public string formula = "";
 
-        // qƒm[ƒh
+        // ï¿½qï¿½mï¿½[ï¿½h
         public List<Node> childs = new();
 
-        // eƒm[ƒh
+        // ï¿½eï¿½mï¿½[ï¿½h
         public Node parent { get; private set; }
 
         public void Add(Node node)

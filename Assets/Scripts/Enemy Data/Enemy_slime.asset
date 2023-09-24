@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enrmyName: "\u30D6\u30EB\u30FC\u30B9\u30E9\u30A4\u30E0"
   enemyDescription: "\u5F31\u3044\u30B9\u30E9\u30A4\u30E0"
-  hp: 11
+  hp: 33
   attack: 5
   attackRate: 0

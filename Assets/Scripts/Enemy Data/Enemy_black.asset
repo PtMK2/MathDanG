@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a184acbe01a10d44882d53ddd2af8205, type: 3}
   m_Name: Enemy_black
   m_EditorClassIdentifier: 
-  enrmyName: 
-  enemyDescription: 
-  hp: 0
-  attack: 0
+  enrmyName: "\u9ED2"
+  enemyDescription: "\u9ED2\u3044"
+  hp: 93
+  attack: 5
+  attackRate: 0

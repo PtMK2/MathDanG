@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a184acbe01a10d44882d53ddd2af8205, type: 3}
   m_Name: Enemy_redslime
   m_EditorClassIdentifier: 
-  enrmyName: akai suraimu
-  enemyDescription: futu no yori tuyoi.
-  hp: 50
-  attack: 10
+  enrmyName: "\u30EC\u30C3\u30C9\u30B9\u30E9\u30A4\u30E0"
+  enemyDescription: "\u653B\u6483\u529B\u304C\u9AD8\u3044\u30B9\u30E9\u30A4\u30E0"
+  hp: 222
+  attack: 30
+  attackRate: 0

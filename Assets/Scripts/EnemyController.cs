@@ -13,6 +13,7 @@ public class EnemyController : MonoBehaviour
     public string enemyName;
     public string enemyDescription;
     public int enemyHp;
+    public int enemyAttack;
 
     public int enemyNowHp;
 
@@ -23,6 +24,7 @@ public class EnemyController : MonoBehaviour
         enemyName = _enemyData.enrmyName;
         enemyDescription = _enemyData.enemyDescription;
         enemyHp = _enemyData.hp;
+        enemyAttack = _enemyData.attack;
 
         enemyNowHp = enemyHp;
 
@@ -44,7 +46,7 @@ public class EnemyController : MonoBehaviour
 
         if (random == 10)
         {
-            AttackToPlayer(Random.Range(1, 10));
+            AttackToPlayer(enemyAttack);
         }
     }
 
@@ -55,6 +57,7 @@ public class EnemyController : MonoBehaviour
     public void AttackToPlayer(int point)
     {
         playerHpBar.value -= point;
+        GameObject.FindWithTag("Player").GetComponent<Animator>().SetTrigger("Hurt");
     }
 
     public void Dead()

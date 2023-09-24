@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a184acbe01a10d44882d53ddd2af8205, type: 3}
   m_Name: Enemy_green
   m_EditorClassIdentifier: 
-  enrmyName: midori
-  enemyDescription: midorinosuraimu
+  enrmyName: "\u30B0\u30EA\u30FC\u30F3\u30B9\u30E9\u30A4\u30E0"
+  enemyDescription: "\u3061\u3087\u3063\u3068\u5F37\u3044\u30B9\u30E9\u30A4\u30E0"
   hp: 100
-  attack: 5
+  attack: 10
+  attackRate: 0

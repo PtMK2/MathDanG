@@ -9,27 +9,68 @@ public class UIController : MonoBehaviour
 
     [SerializeField]
     private Slider enemyHpBar;
+    private Image enemyHpBarImage;
 
     [SerializeField]
     private Slider playerHpBar;
+    private Image playerHpBarImage;
+
+    [SerializeField]
+    private TMPro.TMP_Text enemyHpBarText;
+
+    [SerializeField]
+    private TMPro.TMP_Text playerHpBarText;
 
     private GameObject EnemyGameObj;
-    
 
-    private string enemyName = "hogehoge";// ‚±‚Ì•Ï”‚ÍÁ‚»‚¤‚Æv‚¦‚ÎÁ‚¹‚é
-    private string enemyDescription = "hogehoge piyopiyo";// ‚±‚Ì•Ï”‚ÍÁ‚»‚¤‚Æv‚¦‚ÎÁ‚¹‚é
+    public AudioClip sound1;
+    AudioSource audioSource;
+
+
+    private string enemyName = "hogehoge";// ï¿½ï¿½ï¿½Ì•Ïï¿½ï¿½Íï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ævï¿½ï¿½ï¿½Îï¿½ï¿½ï¿½ï¿½ï¿½
+    private string enemyDescription = "hogehoge piyopiyo";// ï¿½ï¿½ï¿½Ì•Ïï¿½ï¿½Íï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ævï¿½ï¿½ï¿½Îï¿½ï¿½ï¿½ï¿½ï¿½
 
     
 
     // Start is called before the first frame update
     void Start()
     {
-
+        audioSource = GetComponent<AudioSource>();
+        enemyHpBarImage = enemyHpBar.fillRect.GetComponent<Image>();
+        playerHpBarImage = playerHpBar.fillRect.GetComponent<Image>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        enemyHpBarText.text = enemyHpBar.value.ToString();
+        playerHpBarText.text = playerHpBar.value.ToString();
+
+        if (playerHpBar.value <= playerHpBar.maxValue * 0.2)
+        {
+            playerHpBarImage.color = Color.red;
+        } else if (playerHpBar.value <= playerHpBar.maxValue * 0.4)
+        {
+            playerHpBarImage.color = Color.yellow;
+        } else
+        {
+            //playerHpBarImage.color = Color.green;
+            playerHpBarImage.color = new Color(0f, 0.816f, 0.090f);
+        }
+
+        if (enemyHpBar.value <= enemyHpBar.maxValue * 0.2)
+        {
+            enemyHpBarImage.color = Color.red;
+        }
+        else if (enemyHpBar.value <= enemyHpBar.maxValue * 0.4)
+        {
+            enemyHpBarImage.color = Color.yellow;
+        }
+        else
+        {
+            enemyHpBarImage.color = new Color(0f, 0.816f, 0.090f);
+            //enemyHpBarImage.color = Color.green;
+        }
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -48,15 +89,16 @@ public class UIController : MonoBehaviour
 
                 EnemyGameObj = hit2D.transform.gameObject;
 
-                // ƒNƒŠƒbƒN‚³‚ê‚½“G‚Ìî•ñæ“¾
+                // ï¿½Nï¿½ï¿½ï¿½bï¿½Nï¿½ï¿½ï¿½ê‚½ï¿½Gï¿½Ìï¿½ï¿½æ“¾
                 enemyName = EnemyGameObj.GetComponent<EnemyController>().enemyName;
                 enemyDescription = EnemyGameObj.GetComponent<EnemyController>().enemyDescription;
 
-                // æ“¾‚µ‚½î•ñ‚ğƒpƒlƒ‹‚É”½‰f‚³‚¹‚é
+                // ï¿½æ“¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½pï¿½lï¿½ï¿½ï¿½É”ï¿½ï¿½fï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 enemyInfoPanel.transform.Find("EnemyName").GetComponent<TextMeshProUGUI>().text = enemyName;
                 enemyInfoPanel.transform.Find("EnemyDescription").GetComponent<TextMeshProUGUI>().text = enemyDescription;
 
                 enemyInfoPanel.SetActive(true);
+                audioSource.PlayOneShot(sound1);
                 //Debug.Log(EnemyGameObj.name);
             }
         }

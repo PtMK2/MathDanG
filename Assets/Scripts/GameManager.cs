@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
 
     private List<Transform> targets = new List<Transform>();
 
-    private int stageNum = 1;// �X�e�[�W��
+    public static  int stageNum = 1;// �X�e�[�W��
 
     private GameObject[] allEnemyGOs;
 
@@ -34,6 +34,9 @@ public class GameManager : MonoBehaviour
 
     public bool isEnemyDead = false;
     public bool isPlayerDead = false;
+
+    public AudioClip sound1;
+    AudioSource audioSource;
 
     private readonly string[] _cardNames = {
         "Card zero",
@@ -51,17 +54,20 @@ public class GameManager : MonoBehaviour
         "Card multiplication",
         "Card divide"
     };
+    string[] availableObjectNames = new string[] { "Slime", "RedSlime", "GreenSlime", "IcekingSlime", "YellowSlime"}; // 使用可能なオブジェクトの名前をリストに追加します
 
     // Start is called before the first frame update
     void Start()
-    {
+    {   
+        stageNum=1;
         InitializeGame();
         ResetStage();
 
     }
     void InitializeGame()
     {
-        playerHpBar.value=100;
+        playerHpBar.value=200;
+        audioSource = GetComponent<AudioSource>();
     }
     // Update is called once per frame
     void Update()
@@ -84,9 +90,19 @@ public class GameManager : MonoBehaviour
         if (playerHpBar.value <= 0 && !isPlayerDead)
         {
             player.GetComponent<Animator>().SetTrigger("Death");
-            isPlayerDead = true;
-            SceneManager.LoadScene("GameOver");
+            //isPlayerDead = true;
+            //SceneManager.LoadScene("GameOver");
+            StartCoroutine(PlayetDead());
         }
+    }
+
+    private IEnumerator PlayetDead()
+    {
+        isPlayerDead = true;
+
+        yield return new WaitForSeconds(2f);
+
+        Initiate.Fade("GameOver", Color.black, 8f);
     }
 
     private IEnumerator CloneCard(GameObject gameObject)
@@ -110,7 +126,7 @@ public class GameManager : MonoBehaviour
     private void EnemyDropCards()
     {
         // �G�����Ƃ��J�[�h�̖���
-        int dropCardNum = UnityEngine.Random.Range(1, 4);
+        int dropCardNum = UnityEngine.Random.Range(7, 9);
 
         
 
@@ -145,6 +161,11 @@ public class GameManager : MonoBehaviour
     {
         //Debug.Log("Attack");
         Debug.Log($"{((enemyHpBar.value == point) ? "�s�b�^���I" : "")}");
+        if (enemyHpBar.value == point && playerHpBar.value < playerHpBar.maxValue)
+        {
+            playerHpBar.value = playerHpBar.maxValue;
+            audioSource.PlayOneShot(sound1);
+        }
         enemyHpBar.value -= point;
         foreach (Transform transform in targets)
         {
@@ -175,8 +196,16 @@ public class GameManager : MonoBehaviour
         stageText.SetText("STAGE:{0}", ++stageNum);
 
         // �G�𐶐� ��
-        GameObject gameObject = Resources.Load<GameObject>("Slime");
-        Instantiate(gameObject, new Vector2(2,2), Quaternion.identity, enemys);
+        
+        int enemyNum = UnityEngine.Random.Range(1, 4);
+        for(int i = 1; i <= enemyNum;i++ )
+        {
+            int randomIndex = UnityEngine.Random.Range(0, availableObjectNames.Length);
+            GameObject gameObject = Resources.Load<GameObject>(availableObjectNames[randomIndex]);
+            Instantiate(gameObject, new Vector2(6-3*enemyNum+i*3.2f , 2.5f), Quaternion.identity, enemys);
+        }
+        //GameObject gameObject = Resources.Load<GameObject>("Slime");
+        //Instantiate(gameObject, new Vector2(2,2), Quaternion.identity, enemys);
 
         ResetStage();
     }

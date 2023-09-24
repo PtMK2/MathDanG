@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Enemy_redslime
   m_EditorClassIdentifier: 
   enrmyName: "\u30EC\u30C3\u30C9\u30B9\u30E9\u30A4\u30E0"
-  enemyDescription: "\u5F37\u3044\u30B9\u30E9\u30A4\u30E0"
+  enemyDescription: "\u653B\u6483\u529B\u304C\u9AD8\u3044\u30B9\u30E9\u30A4\u30E0"
   hp: 222
   attack: 30
   attackRate: 0

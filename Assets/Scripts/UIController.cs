@@ -22,7 +22,10 @@ public class UIController : MonoBehaviour
     private TMPro.TMP_Text playerHpBarText;
 
     private GameObject EnemyGameObj;
-    
+
+    public AudioClip sound1;
+    AudioSource audioSource;
+
 
     private string enemyName = "hogehoge";// ���̕ϐ��͏������Ǝv���Ώ�����
     private string enemyDescription = "hogehoge piyopiyo";// ���̕ϐ��͏������Ǝv���Ώ�����
@@ -32,7 +35,7 @@ public class UIController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        audioSource = GetComponent<AudioSource>();
         enemyHpBarImage = enemyHpBar.fillRect.GetComponent<Image>();
         playerHpBarImage = playerHpBar.fillRect.GetComponent<Image>();
     }
@@ -95,6 +98,7 @@ public class UIController : MonoBehaviour
                 enemyInfoPanel.transform.Find("EnemyDescription").GetComponent<TextMeshProUGUI>().text = enemyDescription;
 
                 enemyInfoPanel.SetActive(true);
+                audioSource.PlayOneShot(sound1);
                 //Debug.Log(EnemyGameObj.name);
             }
         }

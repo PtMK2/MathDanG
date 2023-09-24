@@ -16,6 +16,7 @@ public class AttackButton : MonoBehaviour
     private GameManager _gameManager;
 
     public AudioClip sound1;
+    public AudioClip sound2;
     AudioSource audioSource;
 
     // Start is called before the first frame update
@@ -25,10 +26,19 @@ public class AttackButton : MonoBehaviour
     }
 
     // Update is called once per frame
-    //void update()
-    //{
-        
-    //}
+    void Update()
+    {
+        if (_gameManager.GetComponent<GameManager>().isPlayerDead)
+        {
+            // disable button
+            GetComponent<Button>().interactable = false;
+        }
+        else
+        {
+            // enable button
+            GetComponent<Button>().interactable = true;
+        }
+    }
 
     public void OnClick()
     {
@@ -56,6 +66,7 @@ public class AttackButton : MonoBehaviour
         catch (System.Exception e)
         {
             Debug.Log($"�v�Z�ł��܂��� ���R:{e.Message}");
+            audioSource.PlayOneShot(sound2);
             return;
         }
 

@@ -57,6 +57,7 @@ public class EnemyController : MonoBehaviour
     public void AttackToPlayer(int point)
     {
         playerHpBar.value -= point;
+        GameObject.FindWithTag("Player").GetComponent<Animator>().SetTrigger("Hurt");
     }
 
     public void Dead()

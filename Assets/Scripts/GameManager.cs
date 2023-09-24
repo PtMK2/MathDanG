@@ -35,6 +35,9 @@ public class GameManager : MonoBehaviour
     public bool isEnemyDead = false;
     public bool isPlayerDead = false;
 
+    public AudioClip sound1;
+    AudioSource audioSource;
+
     private readonly string[] _cardNames = {
         "Card zero",
         "Card one",
@@ -64,6 +67,7 @@ public class GameManager : MonoBehaviour
     void InitializeGame()
     {
         playerHpBar.value=200;
+        audioSource = GetComponent<AudioSource>();
     }
     // Update is called once per frame
     void Update()
@@ -157,9 +161,10 @@ public class GameManager : MonoBehaviour
     {
         //Debug.Log("Attack");
         Debug.Log($"{((enemyHpBar.value == point) ? "�s�b�^���I" : "")}");
-        if (enemyHpBar.value == point)
+        if (enemyHpBar.value == point && playerHpBar.value < playerHpBar.maxValue)
         {
             playerHpBar.value = playerHpBar.maxValue;
+            audioSource.PlayOneShot(sound1);
         }
         enemyHpBar.value -= point;
         foreach (Transform transform in targets)

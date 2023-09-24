@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
 
     private List<Transform> targets = new List<Transform>();
 
-    private int stageNum = 1;// �X�e�[�W��
+    public static  int stageNum = 1;// �X�e�[�W��
 
     private GameObject[] allEnemyGOs;
 
@@ -55,7 +55,8 @@ public class GameManager : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
+    {   
+        stageNum=1;
         InitializeGame();
         ResetStage();
 
